@@ -90,10 +90,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('ruta_a_tu_imagen_hero.jpg');
+            background-image: url(file:///C:/Users/esteb/OneDrive/Documentos/sena/trimestre%202/LUNES/02/hero.webp);
             background-size: cover;
             background-position: center;
-            opacity: 0.3;
+            opacity: 0.6;
             z-index: 0;
         }
 
@@ -105,29 +105,33 @@
         }
 
         .hero h1 {
-            font-size: 56px;
+            font-size: 60px;
             margin-bottom: 20px;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 8), 
+                         4px 4px 15px rgba(0, 0, 0, 6);
             animation: fadeInDown 1s ease-in-out;
         }
 
         .hero .subtitulo {
             font-size: 24px;
             margin-bottom: 15px;
-            color: #64b5f6;
+            color: #1882d8;
             font-weight: 600;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 10);
         }
 
         .hero p {
             font-size: 18px;
             margin-bottom: 35px;
             line-height: 1.8;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 10);
         }
 
         .btn-group {
             display: flex;
             gap: 20px;
             justify-content: center;
+            box-shadow: #fff;
         }
 
         .btn-primary, .btn-secondary {
@@ -140,17 +144,22 @@
             transition: all 0.3s;
             text-decoration: none;
             display: inline-block;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.979),
+                0 2px 8px rgba(0, 0, 0, 0.3);
+            
         }
 
         .btn-primary {
-            background-color: #64b5f6;
-            color: #1a237e;
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
         }
 
         .btn-primary:hover {
-            background-color: #42a5f5;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(100, 181, 246, 0.4);
+            background-color: white;
+            color: #1a237e;
+            box-shadow: 0 8px 25px rgba(100, 181, 246, 0.6),
+                0 4px 15px rgba(0, 0, 0, 0.4);
         }
 
         .btn-secondary {
@@ -166,35 +175,45 @@
 
         /* ===== CONTENEDOR PRINCIPAL ===== */
         .contenedor-principal {
-            max-width: 1200px;
+            
+            max-width: 1350px;
             margin: 0 auto;
             padding: 60px 20px;
+            background-image: url("file:///C:/Users/esteb/OneDrive/Documentos/sena/trimestre%202/LUNES/02/Escaleras-Electricas-con-Normas-EM.070-y-EN-115-1-1024x538.webp");
+            background-size: cover;        /* cubre toda el área */
+            background-position: center;   /* centra la imagen */
+            background-repeat: no-repeat; 
+            background-attachment: fixed;  /* efecto paralax suave (opcional) */
+            border-radius: 14px;
+            
         }
 
         /* ===== SECCIÓN SOBRE EL PROYECTO ===== */
         .seccion {
-            background-color: white;
-            padding: 50px;
+            background-color: transparent;
+            padding: 80px;
             margin-bottom: 40px;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
         }
 
         .seccion h2 {
-            color: #1a237e;
+            color: #ffffff;
             margin-bottom: 25px;
             font-size: 36px;
             text-align: center;
             border-bottom: 3px solid #64b5f6;
             padding-bottom: 15px;
+            text-shadow: 1px 8px 15px rgba(0, 0, 0, 1);
         }
 
         .seccion p {
             text-align: justify;
             margin-bottom: 20px;
-            color: #555;
+            color: #ffffff;
             font-size: 16px;
             line-height: 1.8;
+            text-shadow: 1px 8px 15px rgba(0, 0, 0, 1);
         }
 
         /* ===== CARACTERÍSTICAS CON FLEXBOX ===== */
@@ -208,18 +227,21 @@
         .tarjeta-caracteristica {
             flex: 1;
             min-width: 280px;
-            background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+            background: linear-gradient(135deg, 
+                    rgba(26, 35, 126, 0.6) 0%,
+                    rgba(13, 71, 161, 0.6) 100% 
+            );
             color: white;
             padding: 35px;
             border-radius: 15px;
             text-align: center;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .tarjeta-caracteristica:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(26, 35, 126, 0.3);
+            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.8);
         }
 
         .icono-caracteristica {
@@ -251,15 +273,23 @@
             padding: 35px;
             border-radius: 15px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            
         }
 
         .caja-problema {
-            background: linear-gradient(135deg, #ef5350 0%, #e53935 100%);
+            background: linear-gradient(135deg,
+            rgba(226, 115, 113, 0.6) 0%,   /* Antes: #e27371 */
+            rgba(240, 129, 128, 0.6) 100%  /* Antes: #f08180 */
+        );
             color: white;
+            
         }
 
         .caja-solucion {
-            background: linear-gradient(135deg, #66bb6a 0%, #43a047 100%);
+            background: linear-gradient(135deg,
+            rgba(142, 235, 146, 0.6) 0%,   /* Antes: #8eeb92 */
+            rgba(103, 204, 108, 0.6) 100%  /* Antes: #67cc6c */
+        );
             color: white;
         }
 
@@ -310,7 +340,7 @@
             overflow: hidden;
             border-radius: 15px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s;
+            transition: transform 0.9s;
             height: 300px;
         }
 
@@ -335,7 +365,7 @@
             padding: 25px;
             color: white;
             transform: translateY(100%);
-            transition: transform 0.3s;
+            transition: transform 0.9s;
         }
 
         .galeria-item:hover .galeria-overlay {
@@ -374,7 +404,10 @@
             justify-content: space-around;
             flex-wrap: wrap;
             gap: 30px;
-            background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+            background: linear-gradient(135deg, 
+                    rgba(26, 35, 126, 0.6) 0%,
+                    rgba(13, 71, 161, 0.6) 100% 
+                    );
             padding: 50px 30px;
             border-radius: 15px;
             margin-top: 40px;
@@ -474,7 +507,9 @@
     <!-- ===== BARRA DE NAVEGACIÓN ===== -->
     <nav class="navbar">
         <div class="logo-container">
-    <img src="assets/images/logo-r.png" alt="LiftSafe Logo" style="height: 100px;">
+    <img src="file:///C:/Users/esteb/OneDrive/Documentos/sena/trimestre%202/LUNES/02/logo02-rem.png" 
+            alt="LiftSafe Logo" style="height: 100px;">
+        <!-- <div class="logo">Lift<span>Safe</span></div> -->
         </div>
         <ul class="nav-links">
             <li><a href="#inicio">Inicio</a></li>
@@ -489,7 +524,8 @@
     <!-- ===== HERO SECTION ===== -->
     <section class="hero" id="inicio">
         <div class="hero-content">
-            <h1>LiftSafe</h1>
+            <div class="logo"><h1>Lift<span>Safe</span></h1>
+            </div>
             <p class="subtitulo">Gestión Integral de Inspecciones Técnicas</p>
             <p>Plataforma web responsiva para la digitalización y automatización completa del proceso de inspección técnica de ascensores y equipos de transporte vertical</p>
             <div class="btn-group">
@@ -600,65 +636,65 @@
             </div>
             <div class="stat-item">
                 <div class="stat-numero">24/7</div>
-                <div class="stat-label">Disponibilidad del sistema en la nube</div>
+                <div class="stat-label">Disponibilidad del sistema offline</div>
             </div>
         </div>
 
         <!-- ===== GALERÍA DE EVIDENCIAS ===== -->
         <section class="seccion" id="galeria">
             <h2>Galería del Proyecto</h2>
-            <p style="text-align: center; color: #666; margin-bottom: 30px;">
+            <p style="text-align: center; color: #ffffff; margin-bottom: 30px;">
                 Evidencias visuales del proceso de inspección y funcionalidades de la plataforma
             </p>
             <div class="galeria">
-                <!-- IMAGEN 1: Agrega aquí imagen de ascensor o inspección -->
+               
                 <div class="galeria-item">
-                    <img src="imagen1_ascensor.jpg" alt="Inspección de ascensor">
+                    <img src="file:///C:/Users/esteb/OneDrive/Documentos/sena/trimestre%202/LUNES/02/asc6.webp" alt="Inspección de ascensor">
                     <div class="galeria-overlay">
                         <h4>Inspección en Campo</h4>
                         <p>Inspector realizando verificación técnica con tablet</p>
                     </div>
                 </div>
 
-                <!-- IMAGEN 2: Agrega aquí captura de pantalla del checklist -->
+           
                 <div class="galeria-item">
-                    <img src="imagen2_checklist.jpg" alt="Checklist digital">
+                    <img src="file:///C:/Users/esteb/OneDrive/Documentos/sena/trimestre%202/LUNES/02/survey-form-check-marks-on-checklist-filling-online-form-and-answering-questions-concept.webp" alt="Checklist digital">
                     <div class="galeria-overlay">
                         <h4>Checklist Digital</h4>
                         <p>Sistema de verificación guiado paso a paso</p>
                     </div>
                 </div>
 
-                <!-- IMAGEN 3: Agrega aquí imagen de evidencia fotográfica -->
+          
                 <div class="galeria-item">
-                    <img src="imagen3_evidencias.jpg" alt="Registro de evidencias">
+                    <img src="file:///C:/Users/esteb/OneDrive/Documentos/sena/trimestre%202/LUNES/02/carpetas-y-diferentes-tipos-de-almacenamiento-de-datos.webp" alt="Registro de evidencias">
                     <div class="galeria-overlay">
                         <h4>Evidencias Fotográficas</h4>
                         <p>Captura y almacenamiento integrado de fotos</p>
                     </div>
                 </div>
 
-                <!-- IMAGEN 4: Agrega aquí captura del informe generado -->
+              
                 <div class="galeria-item">
-                    <img src="imagen4_informe.jpg" alt="Informe técnico">
+                    <img src="file:///C:/Users/esteb/OneDrive/Documentos/sena/trimestre%202/LUNES/02/ILUSCR_PLANTILLA_690.webp" alt="Informe técnico">
                     <div class="galeria-overlay">
                         <h4>Informe Técnico</h4>
                         <p>Documento profesional generado automáticamente</p>
                     </div>
                 </div>
 
-                <!-- IMAGEN 5: Agrega aquí imagen de equipo de transporte vertical -->
+                
                 <div class="galeria-item">
-                    <img src="imagen5_equipo.jpg" alt="Equipos inspeccionados">
+                    <img src="file:///C:/Users/esteb/OneDrive/Documentos/sena/trimestre%202/LUNES/02/otis-escaleras-electricas-ascensores.webp" alt="Equipos inspeccionados">
                     <div class="galeria-overlay">
                         <h4>Equipos Certificados</h4>
-                        <p>Ascensores, montacargas y escaleras eléctricas</p>
+                        <p>Ascensores y escaleras eléctricas</p>
                     </div>
                 </div>
 
-                <!-- IMAGEN 6: Agrega aquí dashboard o panel de control -->
+                
                 <div class="galeria-item">
-                    <img src="imagen6_dashboard.jpg" alt="Panel de control">
+                    <img src="file:///C:/Users/esteb/OneDrive/Documentos/sena/trimestre%202/LUNES/02/gestion-documental-en-seguridad-laboral-claves-para-un-sistema-de-prevencion-eficaz.webp" alt="Panel de control">
                     <div class="galeria-overlay">
                         <h4>Panel de Gestión</h4>
                         <p>Control centralizado de inspecciones programadas</p>
@@ -669,20 +705,19 @@
 
         <!-- ===== VIDEO DEMOSTRATIVO ===== -->
         <section class="seccion" id="video">
-            <h2>Demostración del Sistema</h2>
-            <p style="text-align: center; color: #666; margin-bottom: 20px;">
-                Video demostrativo del funcionamiento de LiftSafe en un proceso real de inspección
+            <h2>certificacion </h2>
+            <p style="text-align: center; color: #ffffff; margin-bottom: 20px;">
+                 proceso de inspección
             </p>
             <div class="video-seccion">
                 <div class="video-container">
                     <!-- AQUÍ COLOCA TU VIDEO DE YOUTUBE O DEMO -->
                     <!-- Ejemplo: <iframe src="https://www.youtube.com/embed/TU_VIDEO_ID" frameborder="0" allowfullscreen></iframe> -->
                     <iframe 
-                        src="https://www.youtube.com/embed/TU_VIDEO_AQUI" 
-                        title="Demostración LiftSafe" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
+                        width="560" height="315" src="https://www.youtube.com/embed/GAQXbianTy8?si=up7QLs0DVN888iRF" 
+                        title="YouTube video player" frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
                     </iframe>
                 </div>
             </div>
@@ -693,9 +728,7 @@
     <!-- ===== FOOTER ===== -->
     <footer class="footer" id="contacto">
         <p><strong>LiftSafe</strong> - Plataforma de Gestión Integral de Inspecciones Técnicas</p>
-        <p>Desarrollado por: <strong>Nelson Esteban Mejía Gómez</strong></p>
         <p>Proyecto SENA - Análisis y Desarrollo de Software</p>
-        <p>Ingeniería de Inspección Colombiana S.A.S.</p>
         <p style="margin-top: 15px;">
             <a href="mailto:contacto@liftsafe.com">contacto@liftsafe.com</a> | 
             <a href="tel:+573001234567">+57 300 123 4567</a>
