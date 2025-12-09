@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LiftSafe - Gestión Integral de Inspecciones Técnicas</title>
+    <style>
+        /* ===== RESET Y ESTILOS GENERALES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        /* ===== NAVBAR CON FLEXBOX Y STICKY ===== */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #1a237e;
+            padding: 15px 50px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #64b5f6;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            color: #64b5f6;
+            background-color: rgba(100, 181, 246, 0.1);
+        }
+
+        /* ===== HERO SECTION CON POSICIONAMIENTO ABSOLUTO ===== */
+        .hero {
+            position: relative;
+            height: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+        }
+
+        /* AQUÍ VA TU IMAGEN PRINCIPAL DE ASCENSORES/INSPECCIÓN */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('ruta_a_tu_imagen_hero.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        .hero .subtitulo {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #64b5f6;
+            font-weight: 600;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 35px;
+            line-height: 1.8;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 15px 35px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: #64b5f6;
+            color: #1a237e;
+        }
+
+        .btn-primary:hover {
+            background-color: #42a5f5;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(100, 181, 246, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background-color: white;
+            color: #1a237e;
+        }
+
+        /* ===== CONTENEDOR PRINCIPAL ===== */
+        .contenedor-principal {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* ===== SECCIÓN SOBRE EL PROYECTO ===== */
+        .seccion {
+            background-color: white;
+            padding: 50px;
+            margin-bottom: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .seccion h2 {
+            color: #1a237e;
+            margin-bottom: 25px;
+            font-size: 36px;
+            text-align: center;
+            border-bottom: 3px solid #64b5f6;
+            padding-bottom: 15px;
+        }
+
+        .seccion p {
+            text-align: justify;
+            margin-bottom: 20px;
+            color: #555;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        /* ===== CARACTERÍSTICAS CON FLEXBOX ===== */
+        .caracteristicas {
+            display: flex;
+            gap: 25px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .tarjeta-caracteristica {
+            flex: 1;
+            min-width: 280px;
+            background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+            color: white;
+            padding: 35px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .tarjeta-caracteristica:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(26, 35, 126, 0.3);
+        }
+
+        .icono-caracteristica {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .tarjeta-caracteristica h3 {
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        .tarjeta-caracteristica p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #e3f2fd;
+            text-align: center;
+        }
+
+        /* ===== PROBLEMA Y SOLUCIÓN (DOS COLUMNAS CON GRID) ===== */
+        .problema-solucion {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .caja-problema, .caja-solucion {
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .caja-problema {
+            background: linear-gradient(135deg, #ef5350 0%, #e53935 100%);
+            color: white;
+        }
+
+        .caja-solucion {
+            background: linear-gradient(135deg, #66bb6a 0%, #43a047 100%);
+            color: white;
+        }
+
+        .caja-problema h3, .caja-solucion h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .caja-problema ul, .caja-solucion ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .caja-problema li, .caja-solucion li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .caja-problema li::before {
+            content: "✗";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .caja-solucion li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* ===== GALERÍA DE EVIDENCIAS CON CSS GRID ===== */
+        .galeria {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .galeria-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+            height: 300px;
+        }
+
+        .galeria-item:hover {
+            transform: scale(1.05);
+        }
+
+        /* AQUÍ VAN TUS IMÁGENES DE INSPECCIONES, ASCENSORES, EQUIPOS */
+        .galeria-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .galeria-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(26, 35, 126, 0.95), transparent);
+            padding: 25px;
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .galeria-item:hover .galeria-overlay {
+            transform: translateY(0);
+        }
+
+        .galeria-overlay h4 {
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+        /* ===== SECCIÓN DE VIDEO DEMOSTRATIVO ===== */
+        .video-seccion {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .video-container {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* AQUÍ VA TU VIDEO DE YOUTUBE O DEMO DEL SISTEMA */
+        .video-container iframe {
+            width: 100%;
+            max-width: 900px;
+            height: 500px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ===== ESTADÍSTICAS CON FLEXBOX ===== */
+        .estadisticas {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+            background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+            padding: 50px 30px;
+            border-radius: 15px;
+            margin-top: 40px;
+            color: white;
+        }
+
+        .stat-item {
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .stat-numero {
+            font-size: 48px;
+            font-weight: bold;
+            color: #64b5f6;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: #e3f2fd;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background-color: #1a237e;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+        }
+
+        .footer p {
+            margin-bottom: 10px;
+        }
+
+        .footer a {
+            color: #64b5f6;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== ANIMACIONES ===== */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 15px;
+                margin-top: 15px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero .subtitulo {
+                font-size: 18px;
+            }
+
+            .btn-group {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .problema-solucion {
+                grid-template-columns: 1fr;
+            }
+
+            .seccion {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== BARRA DE NAVEGACIÓN ===== -->
+    <nav class="navbar">
+        <div class="logo-container">
+            <!-- AQUÍ PUEDES AGREGAR TU LOGO: <img src="ruta_logo.png" alt="LiftSafe Logo" style="height: 40px;"> -->
+            <div class="logo">Lift<span>Safe</span></div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#proyecto">Proyecto</a></li>
+            <li><a href="#caracteristicas">Características</a></li>
+            <li><a href="#galeria">Galería</a></li>
+            <li><a href="#video">Demo</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>LiftSafe</h1>
+            <p class="subtitulo">Gestión Integral de Inspecciones Técnicas</p>
+            <p>Plataforma web responsiva para la digitalización y automatización completa del proceso de inspección técnica de ascensores y equipos de transporte vertical</p>
+            <div class="btn-group">
+                <a href="#proyecto" class="btn-primary">Conocer más</a>
+                <a href="#video" class="btn-secondary">Ver demostración</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTENEDOR PRINCIPAL ===== -->
+    <div class="contenedor-principal">
+
+        <!-- ===== SOBRE EL PROYECTO ===== -->
+        <section class="seccion" id="proyecto">
+            <h2>Sobre el Proyecto</h2>
+            <p>
+                <strong>LiftSafe</strong> es una solución tecnológica desarrollada para modernizar y optimizar el proceso de inspección técnica de ascensores, en cumplimiento con estándares normativos y buenas prácticas de ingeniería de software. El proyecto surge como respuesta a la necesidad identificada en <strong>Ingeniería de Inspección Colombiana S.A.S.</strong>, empresa que actualmente ejecuta procesos manuales que afectan la precisión de los registros, la trazabilidad de la información y los tiempos de producción documental.
+            </p>
+            <p>
+                La plataforma propone la <strong>digitalización y automatización</strong> de actividades clave como la programación de inspecciones, ejecución asistida mediante checklist técnico, registro y almacenamiento de evidencias fotográficas, gestión de firmas digitales y generación automática del informe técnico. Adicionalmente, incorpora una funcionalidad de <strong>trabajo offline con sincronización automática</strong>, garantizando continuidad operacional en escenarios con conectividad limitada.
+            </p>
+            <p>
+                Desarrollada bajo <strong>metodología ágil</strong> con enfoque incremental, su diseño arquitectónico contempla principios de escalabilidad, seguridad, accesibilidad y mantenibilidad, permitiendo su adopción por organizaciones del sector de inspección y certificación técnica.
+            </p>
+        </section>
+
+        <!-- ===== PROBLEMA Y SOLUCIÓN ===== -->
+        <section class="seccion">
+            <h2>Problemática y Solución</h2>
+            <div class="problema-solucion">
+                <div class="caja-problema">
+                    <h3>❌ Problemática Actual</h3>
+                    <ul>
+                        <li>Procesos manuales con formatos impresos</li>
+                        <li>Fotografías no integradas al sistema</li>
+                        <li>Falta de trazabilidad digital</li>
+                        <li>Duplicidad de trabajo y transcripción en oficina</li>
+                        <li>Retrasos en entrega de informes</li>
+                        <li>Pérdida de evidencia técnica</li>
+                        <li>Inconsistencias en registros</li>
+                    </ul>
+                </div>
+                <div class="caja-solucion">
+                    <h3>✅ Solución LiftSafe</h3>
+                    <ul>
+                        <li>Digitalización completa del proceso</li>
+                        <li>Registro integrado de evidencias fotográficas</li>
+                        <li>Trazabilidad total desde solicitud hasta entrega</li>
+                        <li>Automatización de informes técnicos</li>
+                        <li>Firmas digitales integradas</li>
+                        <li>Funcionalidad offline con sincronización</li>
+                        <li>Centralización y seguridad de datos</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CARACTERÍSTICAS PRINCIPALES ===== -->
+        <section class="seccion" id="caracteristicas">
+            <h2>Características Principales</h2>
+            <div class="caracteristicas">
+                <div class="tarjeta-caracteristica">
+                    <div class="icono-caracteristica">📋</div>
+                    <h3>Checklist Digital</h3>
+                    <p>Sistema de checklist técnico guiado para garantizar inspecciones completas y estandarizadas según normativa vigente</p>
+                </div>
+                <div class="tarjeta-caracteristica">
+                    <div class="icono-caracteristica">📸</div>
+                    <h3>Evidencias Integradas</h3>
+                    <p>Captura y almacenamiento de fotografías vinculadas directamente a cada punto de inspección del equipo</p>
+                </div>
+                <div class="tarjeta-caracteristica">
+                    <div class="icono-caracteristica">✍️</div>
+                    <h3>Firmas Digitales</h3>
+                    <p>Gestión de firmas digitales con validez legal para inspectores, clientes y personal autorizado</p>
+                </div>
+                <div class="tarjeta-caracteristica">
+                    <div class="icono-caracteristica">📄</div>
+                    <h3>Informes Automáticos</h3>
+                    <p>Generación automática de informes técnicos profesionales en formato PDF con toda la evidencia documentada</p>
+                </div>
+                <div class="tarjeta-caracteristica">
+                    <div class="icono-caracteristica">🔌</div>
+                    <h3>Modo Offline</h3>
+                    <p>Funcionalidad completa sin conexión a internet con sincronización automática al restaurar conectividad</p>
+                </div>
+                <div class="tarjeta-caracteristica">
+                    <div class="icono-caracteristica">📱</div>
+                    <h3>Diseño Responsivo</h3>
+                    <p>Interfaz adaptable a dispositivos móviles, tablets y escritorio para trabajo en campo y oficina</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== ESTADÍSTICAS ===== -->
+        <div class="estadisticas">
+            <div class="stat-item">
+                <div class="stat-numero">80%</div>
+                <div class="stat-label">Reducción en tiempo de generación de informes</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-numero">100%</div>
+                <div class="stat-label">Trazabilidad de evidencias técnicas</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-numero">0</div>
+                <div class="stat-label">Pérdida de información con sincronización</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-numero">24/7</div>
+                <div class="stat-label">Disponibilidad del sistema en la nube</div>
+            </div>
+        </div>
+
+        <!-- ===== GALERÍA DE EVIDENCIAS ===== -->
+        <section class="seccion" id="galeria">
+            <h2>Galería del Proyecto</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 30px;">
+                Evidencias visuales del proceso de inspección y funcionalidades de la plataforma
+            </p>
+            <div class="galeria">
+                <!-- IMAGEN 1: Agrega aquí imagen de ascensor o inspección -->
+                <div class="galeria-item">
+                    <img src="imagen1_ascensor.jpg" alt="Inspección de ascensor">
+                    <div class="galeria-overlay">
+                        <h4>Inspección en Campo</h4>
+                        <p>Inspector realizando verificación técnica con tablet</p>
+                    </div>
+                </div>
+
+                <!-- IMAGEN 2: Agrega aquí captura de pantalla del checklist -->
+                <div class="galeria-item">
+                    <img src="imagen2_checklist.jpg" alt="Checklist digital">
+                    <div class="galeria-overlay">
+                        <h4>Checklist Digital</h4>
+                        <p>Sistema de verificación guiado paso a paso</p>
+                    </div>
+                </div>
+
+                <!-- IMAGEN 3: Agrega aquí imagen de evidencia fotográfica -->
+                <div class="galeria-item">
+                    <img src="imagen3_evidencias.jpg" alt="Registro de evidencias">
+                    <div class="galeria-overlay">
+                        <h4>Evidencias Fotográficas</h4>
+                        <p>Captura y almacenamiento integrado de fotos</p>
+                    </div>
+                </div>
+
+                <!-- IMAGEN 4: Agrega aquí captura del informe generado -->
+                <div class="galeria-item">
+                    <img src="imagen4_informe.jpg" alt="Informe técnico">
+                    <div class="galeria-overlay">
+                        <h4>Informe Técnico</h4>
+                        <p>Documento profesional generado automáticamente</p>
+                    </div>
+                </div>
+
+                <!-- IMAGEN 5: Agrega aquí imagen de equipo de transporte vertical -->
+                <div class="galeria-item">
+                    <img src="imagen5_equipo.jpg" alt="Equipos inspeccionados">
+                    <div class="galeria-overlay">
+                        <h4>Equipos Certificados</h4>
+                        <p>Ascensores, montacargas y escaleras eléctricas</p>
+                    </div>
+                </div>
+
+                <!-- IMAGEN 6: Agrega aquí dashboard o panel de control -->
+                <div class="galeria-item">
+                    <img src="imagen6_dashboard.jpg" alt="Panel de control">
+                    <div class="galeria-overlay">
+                        <h4>Panel de Gestión</h4>
+                        <p>Control centralizado de inspecciones programadas</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== VIDEO DEMOSTRATIVO ===== -->
+        <section class="seccion" id="video">
+            <h2>Demostración del Sistema</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 20px;">
+                Video demostrativo del funcionamiento de LiftSafe en un proceso real de inspección
+            </p>
+            <div class="video-seccion">
+                <div class="video-container">
+                    <!-- AQUÍ COLOCA TU VIDEO DE YOUTUBE O DEMO -->
+                    <!-- Ejemplo: <iframe src="https://www.youtube.com/embed/TU_VIDEO_ID" frameborder="0" allowfullscreen></iframe> -->
+                    <iframe 
+                        src="https://www.youtube.com/embed/TU_VIDEO_AQUI" 
+                        title="Demostración LiftSafe" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer" id="contacto">
+        <p><strong>LiftSafe</strong> - Plataforma de Gestión Integral de Inspecciones Técnicas</p>
+        <p>Desarrollado por: <strong>Nelson Esteban Mejía Gómez</strong></p>
+        <p>Proyecto SENA - Análisis y Desarrollo de Software</p>
+        <p>Ingeniería de Inspección Colombiana S.A.S.</p>
+        <p style="margin-top: 15px;">
+            <a href="mailto:contacto@liftsafe.com">contacto@liftsafe.com</a> | 
+            <a href="tel:+573001234567">+57 300 123 4567</a>
+        </p>
+        <p style="margin-top: 10px; font-size: 14px; color: #90caf9;">
+            © 2025 LiftSafe. Todos los derechos reservados.
+        </p>
+    </footer>
+
+</body>
+</html>
